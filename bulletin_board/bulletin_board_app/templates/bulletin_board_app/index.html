@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+{% for x in posts %}
+{{ x.author }}
+<br>
+{{ x.title }}
+<br>
+{{ x.text }}
+<br>
+{{ x.category }}
+<br>
+<img src="/media/{{ x.upload }}" width="200" alt="Image">
+<br>
+{% endfor %}
+<hr>
+{% for x in reply %}
+{{ x.author }}
+<br>
+{{ x.text }}
+<br>
+{{ x.post }}
+<br>
+{{ x.status }}
+<br>
+{% endfor %}
+</body>
+</html>

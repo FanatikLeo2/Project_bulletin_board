@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<body>
+My replyes
+<hr>
+    {% if replyes %}
+        {% for reply in replyes %}
+            {% if request.user == reply.post.author %}
+                <p>author : {{ reply.author}}</p>
+                <p>Text : {{ reply.text}}</p>
+                <p>Post : {{ reply.post}}</p>
+                {% if reply.status != 1 %}
+                <a href="{% url 'confirm_reply' reply.id %}">--Принять--</a>
+                {% elif reply.status != 2 %}
+                <a href="{% url 'reject_reply' reply.id %}">--Отклонить--</a>
+                {% endif %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        There is no replyes
+    {% endif %}
+</body>
+</html>
