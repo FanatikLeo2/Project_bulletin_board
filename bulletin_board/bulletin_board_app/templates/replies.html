@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+
+My replies
+<hr>
+   <form action="" method="get">
+       {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+   </form>
+    {% if replies %}
+        {% for reply in replies %}
+                <p>author : {{ reply.author}}</p>
+                <p>Text : {{ reply.text}}</p>
+                <p>Post : {{ reply.post}}</p>
+                {% if reply.status != 1 %}
+                <a href="{% url 'confirm_reply' reply.id %}">--Confirm--</a>
+                {% elif reply.status != 2 %}
+                <a href="{% url 'reject_reply' reply.id %}">--Reject--</a>
+                {% endif %}
+                <hr>
+        {% endfor %}
+    {% else %}
+        There is no replies
+    {% endif %}
+    <a href="{% url 'post_list' %}">--All posts--</a>
+</body>
+</html>

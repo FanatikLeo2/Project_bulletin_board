@@ -33,3 +33,7 @@ class Reply(models.Model):
 
     def __str__(self):
         return f'{self.text}  ----   {self.post}'
+
+    class Meta:
+        verbose_name = 'Reply'
+        verbose_name_plural = 'Replies'
