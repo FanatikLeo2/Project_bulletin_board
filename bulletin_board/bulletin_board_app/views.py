@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from .models import Post, Reply
 from .forms import PostCreateForm, ReplyCreateForm
 from .filters import ReplyFilter
+from accounts.models import OneTimeCode
 
 
 class PostList(ListView):
@@ -88,16 +89,12 @@ def reject_reply(request, pk):
     reply = Reply.objects.get(id=pk)
     reply.status = "2"
     reply.save()
-    send_mail(
-        subject='Reply rejection',
-        message=f'{reply.author.username}, your reply on "{reply.post.title}" rejected!',
-        from_email=None,
-        recipient_list=[reply.author.email],
-    )
     return redirect('reply_list')
 
 
+# Это представление сделано для разработки, чтобы смотреть объекты базы данных
 def index(requests):
     posts = Post.objects.all()
     reply = Reply.objects.all()
-    return render(requests, 'index.html', context={'posts': posts, 'reply': reply})
+    timecode = OneTimeCode.objects.all()
+    return render(requests, 'index.html', context={'posts': posts, 'reply': reply, 'timecode': timecode})

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bulletin_board_app',
     'django_filters',
+    'accounts',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

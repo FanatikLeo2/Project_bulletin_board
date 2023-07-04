@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+Hello, a confirmation code has been sent to your email.
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Username: <input type="text" name="username" /></p>
+    <p>Password: <input type="text" name="password" /></p>
+    <p>Identefication code: <input type="text" name="code" /></p>
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>

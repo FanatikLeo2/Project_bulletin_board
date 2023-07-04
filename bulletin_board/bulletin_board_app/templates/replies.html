@@ -10,15 +10,16 @@ My replies
    </form>
     {% if replies %}
         {% for reply in replies %}
+            {% if reply.status != 2 %}
                 <p>author : {{ reply.author}}</p>
                 <p>Text : {{ reply.text}}</p>
                 <p>Post : {{ reply.post}}</p>
                 {% if reply.status != 1 %}
-                <a href="{% url 'confirm_reply' reply.id %}">--Confirm--</a>
-                {% elif reply.status != 2 %}
-                <a href="{% url 'reject_reply' reply.id %}">--Reject--</a>
+                    <a href="{% url 'confirm_reply' reply.id %}">--Confirm--</a>
+                    <a href="{% url 'reject_reply' reply.id %}">--Reject--</a>
                 {% endif %}
                 <hr>
+            {% endif %}
         {% endfor %}
     {% else %}
         There is no replies

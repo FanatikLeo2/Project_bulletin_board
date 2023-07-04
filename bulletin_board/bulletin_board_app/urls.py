@@ -1,6 +1,7 @@
+from django.urls import path
+
 from .views import PostList, PostCreate, ReplyCreate, PostUpdate, PostDelete, ReplyList, confirm_reply, reject_reply
 from .views import index
-from django.urls import path
 
 urlpatterns = [
    path('', PostList.as_view(), name='post_list'),
